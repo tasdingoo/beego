@@ -116,6 +116,14 @@ type Ormer interface {
 	//	// update user testing's name to slene
 	Raw(query string, args ...interface{}) RawSeter
 	Driver() Driver
+	// return a QuerySeter for related models to md model.
+	// it can do all, update, delete in QuerySeter.
+	// example:
+	// 	qs := orm.QueryRelated(post,"Tag")
+	//  qs.All(&[]*Tag{})
+	//
+	// add by tasdingoo 2016-11-01
+	QueryRelated(md interface{}, name string) QuerySeter
 }
 
 // Inserter insert prepared statement
